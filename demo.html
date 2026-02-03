@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo - EcoMarket Features</title>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #10B981, #059669);
+            color: white;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5rem;
+        }
+        .feature {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 15px;
+            border-left: 4px solid #34D399;
+        }
+        .feature h3 {
+            margin-top: 0;
+            color: #34D399;
+        }
+        .demo-btn {
+            background: #34D399;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            margin: 10px 10px 10px 0;
+            transition: all 0.3s ease;
+        }
+        .demo-btn:hover {
+            background: #10B981;
+            transform: translateY(-2px);
+        }
+        .highlight {
+            background: rgba(52, 211, 153, 0.2);
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+        .tech-stack {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .tech-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        .icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+    </style>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1><i class="fas fa-leaf"></i> EcoMarket Demo</h1>
+        
+        <div class="feature">
+            <h3><i class="fas fa-rocket"></i> Fitur Utama Website</h3>
+            <p>Website marketplace preloved dengan teknologi modern dan fitur lengkap:</p>
+            <ul>
+                <li><span class="highlight">Responsive Design</span> - Optimal di semua device</li>
+                <li><span class="highlight">Multilingual</span> - Bahasa Indonesia & English</li>
+                <li><span class="highlight">PWA Ready</span> - Dapat diinstall seperti aplikasi</li>
+                <li><span class="highlight">Chat Bot AI</span> - Assistant cerdas untuk bantuan</li>
+                <li><span class="highlight">Real-time Chat</span> - Chat langsung dengan penjual</li>
+            </ul>
+            <a href="index.html" class="demo-btn">
+                <i class="fas fa-external-link-alt"></i> Buka Website
+            </a>
+        </div>
+
+        <div class="feature">
+            <h3><i class="fas fa-robot"></i> Chat Bot Interaktif</h3>
+            <p>AI Assistant yang dapat menjawab pertanyaan tentang:</p>
+            <ul>
+                <li>Cara menjual barang preloved</li>
+                <li>Cara membeli dengan aman</li>
+                <li>Tips transaksi yang aman</li>
+                <li>Informasi tentang preloved</li>
+            </ul>
+            <p><strong>Demo:</strong> Klik tombol chat di pojok kanan bawah website, lalu pilih tab "AI Assistant"</p>
+        </div>
+
+        <div class="feature">
+            <h3><i class="fas fa-comments"></i> Chat dengan Penjual</h3>
+            <p>Sistem chat real-time dengan fitur:</p>
+            <ul>
+                <li>Status online/offline penjual</li>
+                <li>Riwayat percakapan</li>
+                <li>Notifikasi pesan baru</li>
+                <li>Status pesan (terkirim/dibaca)</li>
+            </ul>
+            <p><strong>Demo:</strong> Klik produk → "Chat Penjual" atau gunakan tab "Seller Chat" di widget chat</p>
+        </div>
+
+        <div class="feature">
+            <h3><i class="fas fa-globe"></i> Multilingual Support</h3>
+            <p>Website mendukung 2 bahasa dengan fitur:</p>
+            <ul>
+                <li>Switch bahasa real-time</li>
+                <li>Format mata uang otomatis</li>
+                <li>Konten tersimpan per bahasa</li>
+                <li>Preferensi bahasa tersimpan</li>
+            </ul>
+            <p><strong>Demo:</strong> Klik tombol globe di header untuk switch bahasa</p>
+        </div>
+
+        <div class="feature">
+            <h3><i class="fas fa-search"></i> Fitur Marketplace</h3>
+            <p>Fitur lengkap untuk jual beli:</p>
+            <ul>
+                <li>Pencarian dan filter canggih</li>
+                <li>Kategori produk lengkap</li>
+                <li>Rating dan review sistem</li>
+                <li>Wishlist dan keranjang</li>
+                <li>Detail produk dengan galeri</li>
+            </ul>
+        </div>
+
+        <div class="feature">
+            <h3><i class="fas fa-code"></i> Teknologi yang Digunakan</h3>
+            <div class="tech-stack">
+                <div class="tech-item">
+                    <div class="icon"><i class="fab fa-html5"></i></div>
+                    <strong>HTML5</strong><br>
+                    Semantic markup
+                </div>
+                <div class="tech-item">
+                    <div class="icon"><i class="fab fa-css3-alt"></i></div>
+                    <strong>CSS3</strong><br>
+                    Modern styling
+                </div>
+                <div class="tech-item">
+                    <div class="icon"><i class="fab fa-js-square"></i></div>
+                    <strong>JavaScript</strong><br>
+                    ES6+ features
+                </div>
+                <div class="tech-item">
+                    <div class="icon"><i class="fas fa-mobile-alt"></i></div>
+                    <strong>PWA</strong><br>
+                    Progressive Web App
+                </div>
+            </div>
+        </div>
+
+        <div class="feature">
+            <h3><i class="fas fa-play-circle"></i> Cara Menjalankan</h3>
+            <p>Untuk menjalankan website ini:</p>
+            <ol>
+                <li>Download semua file ke folder lokal</li>
+                <li>Buka <code>index.html</code> di browser modern</li>
+                <li>Atau gunakan local server untuk pengalaman optimal</li>
+            </ol>
+            <p><strong>Rekomendasi:</strong> Gunakan Chrome/Firefox untuk fitur PWA lengkap</p>
+        </div>
+
+        <div class="feature">
+            <h3><i class="fas fa-lightbulb"></i> Fitur Demo</h3>
+            <p>Yang bisa dicoba di website:</p>
+            <ul>
+                <li>✅ Chat dengan AI Bot (simulasi respons cerdas)</li>
+                <li>✅ Chat dengan penjual (data sample)</li>
+                <li>✅ Switch bahasa Indonesia/English</li>
+                <li>✅ Pencarian dan filter produk</li>
+                <li>✅ Responsive design di mobile/desktop</li>
+                <li>✅ Modal detail produk</li>
+                <li>✅ Form login/register (UI only)</li>
+                <li>✅ Wishlist dan cart (local storage)</li>
+            </ul>
+        </div>
+
+        <div style="text-align: center; margin-top: 40px;">
+            <a href="index.html" class="demo-btn" style="font-size: 1.2rem; padding: 15px 30px;">
+                <i class="fas fa-rocket"></i> Mulai Eksplorasi Website
+            </a>
+        </div>
+
+        <div style="text-align: center; margin-top: 20px; opacity: 0.8;">
+            <p>🌱 <strong>EcoMarket</strong> - Belanja barang bekas, selamatkan bumi!</p>
+        </div>
+    </div>
+</body>
+</html>

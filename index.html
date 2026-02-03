@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoPreloved - Marketplace Ramah Lingkungan</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="components.css">
+    <link rel="stylesheet" href="chat.css">
+    <link rel="stylesheet" href="seller.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <!-- Logo -->
+                <div class="logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <span class="logo-text">Eco<span class="logo-accent">Preloved</span></span>
+                </div>
+
+                <!-- Navigation -->
+                <nav class="nav desktop-nav">
+                    <a href="#home" class="nav-link active" data-translate="nav.home">Beranda</a>
+                    <a href="#products" class="nav-link" data-translate="nav.products">Produk</a>
+                </nav>
+
+                <!-- Search Bar -->
+                <div class="search-container">
+                    <i class="fas fa-search search-icon"></i>
+                    <input type="text" class="search-input" placeholder="Cari produk..."
+                        data-translate-placeholder="products.search">
+                </div>
+
+                <!-- Right Actions -->
+                <div class="header-actions">
+                    <!-- Language Switcher -->
+                    <div class="language-switcher">
+                        <i class="fas fa-globe"></i>
+                        <select id="languageSelect" class="language-select">
+                            <option value="id">🇮🇩 Indonesia</option>
+                            <option value="en">🇺🇸 English</option>
+                        </select>
+                    </div>
+
+                    <!-- Cart Button -->
+                    <button class="cart-btn" onclick="toggleCart()">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count" id="cartCount">0</span>
+                    </button>
+
+                    <!-- Auth Buttons -->
+                    <div class="auth-buttons">
+                        <button class="btn btn-ghost" onclick="showLogin()" data-translate="nav.login">Masuk</button>
+                        <button class="btn btn-primary" onclick="showRegister()"
+                            data-translate="nav.register">Daftar</button>
+                    </div>
+
+                    <!-- Mobile Menu Button -->
+                    <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div class="mobile-menu" id="mobileMenu">
+                <div class="mobile-search">
+                    <i class="fas fa-search search-icon"></i>
+                    <input type="text" class="search-input" placeholder="Cari produk..."
+                        data-translate-placeholder="products.search">
+                </div>
+                <nav class="mobile-nav">
+                    <a href="#home" class="nav-link" data-translate="nav.home">Beranda</a>
+                    <a href="#products" class="nav-link" data-translate="nav.products">Produk</a>
+                    <button class="btn btn-primary mobile-register" onclick="showRegister()"
+                        data-translate="nav.register">Daftar</button>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="hero">
+            <div class="hero-bg"></div>
+            <div class="container">
+                <div class="hero-content">
+                    <div class="hero-text">
+                        <div class="hero-badge">
+                            <i class="fas fa-leaf"></i>
+                            <span>Sustainability First</span>
+                        </div>
+                        <h1 class="hero-title" data-translate="hero.title">Beri Kesempatan Kedua untuk Barang Anda</h1>
+                        <p class="hero-subtitle" data-translate="hero.subtitle">Pasar preloved ramah lingkungan untuk
+                            bumi yang lebih hijau.</p>
+                        <div class="hero-buttons">
+                            <button class="btn btn-primary btn-large" onclick="scrollToProducts()"
+                                data-translate="hero.cta">Mulai Belanja</button>
+                            <button class="btn btn-outline btn-large"
+                                onclick="window.location.href='seller-dashboard.html'" data-translate="nav.sell">Jual
+                                Barang</button>
+                        </div>
+                        <div class="hero-features">
+                            <div class="feature">
+                                <i class="fas fa-shield-alt"></i>
+                                <span>Terpercaya</span>
+                            </div>
+                            <div class="feature">
+                                <i class="fas fa-recycle"></i>
+                                <span>Ramah Bumi</span>
+                            </div>
+                            <div class="feature">
+                                <i class="fas fa-leaf"></i>
+                                <span>Hemat Biaya</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hero-image">
+                        <img src="images/Back.jpg"
+                            alt="Eco lifestyle" class="hero-img">
+                        <div class="hero-card">
+                            <div class="hero-card-icon">
+                                <i class="fas fa-recycle"></i>
+                            </div>
+                            <div class="hero-card-text">
+                                <div class="hero-card-number">1,200+ kg CO2</div>
+                                <div class="hero-card-label">Emisi yang dikurangi</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Categories Section -->
+        <section class="categories">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title" data-translate="categories.title">Kategori Pilihan</h2>
+                    <p class="section-subtitle">Temukan barang berkualitas berdasarkan minat Anda</p>
+                </div>
+                <div class="categories-grid" id="categoriesGrid">
+                    <!-- Categories will be populated by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Products Section -->
+        <section id="products" class="products">
+            <div class="container">
+                <div class="section-header">
+                    <div>
+                        <h2 class="section-title" data-translate="products.featured">Produk Terbaru</h2>
+                        <p class="section-subtitle">Pilihan barang preloved terbaik untuk gaya hidup berkelanjutan</p>
+                    </div>
+                    <button class="btn btn-outline" onclick="showAllProducts()">Lihat Semua</button>
+                </div>
+
+                <!-- Product Filters -->
+                <div class="product-filters">
+                    <div class="filter-group">
+                        <div class="search-filter">
+                            <i class="fas fa-search"></i>
+                            <input type="text" id="productSearch" placeholder="Cari produk..."
+                                data-translate-placeholder="products.search">
+                        </div>
+                        <select id="categoryFilter" class="filter-select">
+                            <option value="all">Semua Kategori</option>
+                            <option value="fashion">Fashion</option>
+                            <option value="books">Buku</option>
+                            <option value="electronics">Elektronik</option>
+                            <option value="hobby">Hobi & Koleksi</option>
+                        </select>
+                        <select id="sortFilter" class="filter-select">
+                            <option value="newest">Terbaru</option>
+                            <option value="price-low">Harga Terendah</option>
+                            <option value="price-high">Harga Tertinggi</option>
+                        </select>
+                        <button class="btn btn-ghost" onclick="resetFilters()">
+                            <i class="fas fa-times"></i> Reset
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Products Grid -->
+                <div class="products-grid" id="productsGrid">
+                    <!-- Products will be populated by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="features">
+            <div class="container">
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-leaf"></i>
+                        </div>
+                        <h3>Ramah Lingkungan</h3>
+                        <p>Mengurangi limbah dengan memberikan kesempatan kedua bagi barang berkualitas.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3>Transaksi Aman</h3>
+                        <p>Sistem pembayaran dan verifikasi penjual yang terpercaya untuk keamanan Anda.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-truck"></i>
+                        </div>
+                        <h3>Pengiriman Cepat</h3>
+                        <p>Layanan logistik terintegrasi untuk memastikan barang sampai tepat waktu.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="logo">
+                        <div class="logo-icon">
+                            <i class="fas fa-leaf"></i>
+                        </div>
+                        <span class="logo-text">EcoMarket</span>
+                    </div>
+                    <p>Pasar preloved terpercaya yang berfokus pada keberlanjutan dan ekonomi sirkular.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Tautan</h4>
+                    <ul>
+                        <li><a href="#home">Beranda</a></li>
+                        <li><a href="#products">Produk</a></li>
+                        <li><a href="#">Jual Barang</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Bantuan</h4>
+                    <ul>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Hubungi Kami</a></li>
+                        <li><a href="#">Syarat & Ketentuan</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 EcoMarket. Seluruh hak cipta dilindungi.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Shopping Cart Sidebar -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3><i class="fas fa-shopping-bag"></i> <span data-translate="nav.cart">Keranjang</span></h3>
+            <button class="cart-close" onclick="toggleCart()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="cart-content" id="cartContent">
+            <!-- Cart items will be populated by JavaScript -->
+        </div>
+        <div class="cart-footer" id="cartFooter">
+            <!-- Cart total and checkout button will be populated by JavaScript -->
+        </div>
+    </div>
+
+    <!-- Chat Bot -->
+    <div class="chatbot-container" id="chatbotContainer">
+        <div class="chatbot-header">
+            <div class="chatbot-avatar">
+                <i class="fas fa-robot"></i>
+            </div>
+            <div class="chatbot-info">
+                <h4>EcoBot Assistant</h4>
+                <span class="chatbot-status">Online</span>
+            </div>
+            <button class="chatbot-close" onclick="toggleChatbot()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="chatbot-messages" id="chatbotMessages">
+            <div class="message bot-message">
+                <div class="message-avatar">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <div class="message-content">
+                    <p>Halo! Saya EcoBot, asisten virtual Anda. Ada yang bisa saya bantu?</p>
+                    <div class="message-time">Sekarang</div>
+                </div>
+            </div>
+        </div>
+        <div class="chatbot-input">
+            <input type="text" id="chatbotInput" placeholder="Ketik pesan Anda...">
+            <button onclick="sendChatbotMessage()">
+                <i class="fas fa-paper-plane"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Chat Bot Toggle Button -->
+    <button class="chatbot-toggle" onclick="toggleChatbot()">
+        <i class="fas fa-comments"></i>
+    </button>
+
+    <!-- Seller Chat Modal -->
+    <div class="modal" id="sellerChatModal">
+        <div class="modal-content chat-modal">
+            <div class="chat-header">
+                <div class="chat-user-info">
+                    <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=seller" alt="Seller" class="chat-avatar">
+                    <div>
+                        <h4 id="sellerName">Nama Penjual</h4>
+                        <span class="chat-status">Online</span>
+                    </div>
+                </div>
+                <button class="modal-close" onclick="closeSellerChat()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="chat-messages" id="sellerChatMessages">
+                <!-- Messages will be populated by JavaScript -->
+            </div>
+            <div class="chat-input">
+                <input type="text" id="sellerChatInput" placeholder="Ketik pesan untuk penjual...">
+                <button onclick="sendSellerMessage()">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Auth Modals -->
+    <div class="modal" id="loginModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Selamat Datang Kembali</h3>
+                <button class="modal-close" onclick="closeModal('loginModal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="loginEmail" data-translate="auth.email">Alamat Email</label>
+                        <input type="email" id="loginEmail" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="loginPassword" data-translate="auth.password">Kata Sandi</label>
+                        <input type="password" id="loginPassword" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-full">
+                        <i class="fas fa-sign-in-alt"></i> <span data-translate="nav.login">Masuk</span>
+                    </button>
+                </form>
+                <div class="auth-divider">
+                    <span>Atau masuk dengan</span>
+                </div>
+                <div class="social-buttons">
+                    <button class="btn btn-outline">
+                        <i class="fab fa-google"></i> Google
+                    </button>
+                    <button class="btn btn-outline">
+                        <i class="fab fa-facebook"></i> Facebook
+                    </button>
+                </div>
+                <p class="auth-switch">
+                    Belum punya akun? <a href="#" onclick="switchToRegister()">Daftar</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="registerModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Buat Akun Baru</h3>
+                <button class="modal-close" onclick="closeModal('registerModal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="registerForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="registerName">Nama Lengkap</label>
+                            <input type="text" id="registerName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="registerUsername">Username</label>
+                            <input type="text" id="registerUsername" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="registerEmail" data-translate="auth.email">Alamat Email</label>
+                        <input type="email" id="registerEmail" required>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="registerPassword" data-translate="auth.password">Kata Sandi</label>
+                            <input type="password" id="registerPassword" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="confirmPassword">Konfirmasi Kata Sandi</label>
+                            <input type="password" id="confirmPassword" required>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-full">
+                        <i class="fas fa-user-plus"></i> Daftar Sekarang
+                    </button>
+                </form>
+                <p class="auth-switch">
+                    Sudah punya akun? <a href="#" onclick="switchToLogin()">Masuk</a>
+                </p>
+            </div>
+        </div>
+    </div>
+    <div id="sellModal" class="modal-overlay" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Jual Barang Preloved</h2>
+                <button onclick="toggleSellModal()" class="close-btn">&times;</button>
+            </div>
+            <form id="sellForm" onsubmit="handleSellSubmit(event)">
+                <div class="form-group">
+                    <label>Nama Barang</label>
+                    <input type="text" id="prodName" required placeholder="Contoh: Sepatu Nike">
+                </div>
+                <div class="form-group">
+                    <label>Kategori</label>
+                    <select id="prodCategory">
+                        <option value="fashion">Fashion</option>
+                        <option value="electronics">Elektronik</option>
+                        <option value="hobby">Hobi</option>
+                        <option value="books">Buku</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Harga (Rp)</label>
+                    <input type="number" id="prodPrice" required placeholder="Contoh: 50000">
+                </div>
+                <div class="form-group">
+                    <label>Deskripsi</label>
+                    <textarea id="prodDesc" rows="3" required placeholder="Kondisi barang..."></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Tayangkan Iklan</button>
+            </form>
+        </div>
+    </div>
+    <!-- Product Detail Modal -->
+    <div class="modal" id="productModal">
+        <div class="modal-content product-modal">
+            <div class="modal-header">
+                <h3 id="productModalTitle">Detail Produk</h3>
+                <button class="modal-close" onclick="closeModal('productModal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body" id="productModalBody">
+                <!-- Product details will be populated by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+
+    </div>
+
+    <a href="#" onclick="toggleSellModal()">Jual Barang</a>
+    <button onclick="toggleSellModal()">Jual Barang</button>
+
+    <!-- Overlay -->
+    <div class="overlay" id="overlay"></div>
+
+    <!-- Scripts -->
+    <script src="data.js"></script>
+    <script>
+        // Load products from localStorage and merge with mockData
+        (function () {
+            const storedProducts = JSON.parse(localStorage.getItem('allProducts')) || [];
+            if (storedProducts.length > 0) {
+                storedProducts.forEach(storedProduct => {
+                    const exists = mockData.products.find(p => p.id === storedProduct.id);
+                    if (!exists) {
+                        mockData.products.unshift(storedProduct);
+                    } else {
+                        const index = mockData.products.findIndex(p => p.id === storedProduct.id);
+                        if (index !== -1) {
+                            mockData.products[index] = storedProduct;
+                        }
+                    }
+                });
+            }
+        })();
+    </script>
+    <script src="translations.js"></script>
+    <script src="components.js"></script>
+    <script src="auth.js"></script>
+    <script src="cart.js"></script>
+    <script src="chat.js"></script>
+    <script src="main.js"></script>
+
+</body>
+
+</html>

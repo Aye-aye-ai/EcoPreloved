@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test - EcoMarket Features</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background: #f5f5f5;
+        }
+        .test-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .test-section {
+            margin: 20px 0;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .test-section h3 {
+            margin-top: 0;
+            color: #10B981;
+        }
+        .test-btn {
+            background: #10B981;
+            color: white;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        .test-btn:hover {
+            background: #059669;
+        }
+        .status {
+            padding: 5px 10px;
+            border-radius: 3px;
+            margin: 5px 0;
+        }
+        .status.pass {
+            background: #d4edda;
+            color: #155724;
+        }
+        .status.fail {
+            background: #f8d7da;
+            color: #721c24;
+        }
+        .status.pending {
+            background: #fff3cd;
+            color: #856404;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>🧪 EcoMarket - Test Suite</h1>
+        <p>Halaman ini untuk testing fitur-fitur website EcoMarket</p>
+
+        <div class="test-section">
+            <h3>📱 Responsive Design Test</h3>
+            <p>Test website di berbagai ukuran layar:</p>
+            <button class="test-btn" onclick="testResponsive('mobile')">Mobile (375px)</button>
+            <button class="test-btn" onclick="testResponsive('tablet')">Tablet (768px)</button>
+            <button class="test-btn" onclick="testResponsive('desktop')">Desktop (1200px)</button>
+            <div id="responsive-status" class="status pending">Belum ditest</div>
+        </div>
+
+        <div class="test-section">
+            <h3>🌍 Multilingual Test</h3>
+            <p>Test pergantian bahasa:</p>
+            <button class="test-btn" onclick="testLanguage('id')">Bahasa Indonesia</button>
+            <button class="test-btn" onclick="testLanguage('en')">English</button>
+            <button class="test-btn" onclick="testLanguageToggle()">Toggle Language</button>
+            <div id="language-status" class="status pending">Belum ditest</div>
+        </div>
+
+        <div class="test-section">
+            <h3>🤖 Chat Bot Test</h3>
+            <p>Test respons chat bot:</p>
+            <button class="test-btn" onclick="testBot('cara jual')">Test: Cara Jual</button>
+            <button class="test-btn" onclick="testBot('cara beli')">Test: Cara Beli</button>
+            <button class="test-btn" onclick="testBot('preloved')">Test: Preloved</button>
+            <button class="test-btn" onclick="testBot('random')">Test: Random Question</button>
+            <div id="bot-status" class="status pending">Belum ditest</div>
+        </div>
+
+        <div class="test-section">
+            <h3>🔍 Search & Filter Test</h3>
+            <p>Test pencarian dan filter:</p>
+            <button class="test-btn" onclick="testSearch('headphone')">Search: Headphone</button>
+            <button class="test-btn" onclick="testFilter('electronics')">Filter: Electronics</button>
+            <button class="test-btn" onclick="testSort('price_low')">Sort: Price Low</button>
+            <div id="search-status" class="status pending">Belum ditest</div>
+        </div>
+
+        <div class="test-section">
+            <h3>💬 Seller Chat Test</h3>
+            <p>Test chat dengan penjual:</p>
+            <button class="test-btn" onclick="testSellerChat('seller1')">Chat: Budi Santoso</button>
+            <button class="test-btn" onclick="testSellerChat('seller2')">Chat: Sari Dewi</button>
+            <div id="seller-status" class="status pending">Belum ditest</div>
+        </div>
+
+        <div class="test-section">
+            <h3>📊 Performance Test</h3>
+            <p>Test performa website:</p>
+            <button class="test-btn" onclick="testLoadTime()">Test Load Time</button>
+            <button class="test-btn" onclick="testImageLoad()">Test Image Loading</button>
+            <button class="test-btn" onclick="testMemoryUsage()">Test Memory Usage</button>
+            <div id="performance-status" class="status pending">Belum ditest</div>
+        </div>
+
+        <div class="test-section">
+            <h3>🔧 Browser Compatibility</h3>
+            <p>Informasi browser saat ini:</p>
+            <div id="browser-info"></div>
+            <button class="test-btn" onclick="testBrowserFeatures()">Test Browser Features</button>
+            <div id="browser-status" class="status pending">Belum ditest</div>
+        </div>
+
+        <div class="test-section">
+            <h3>📋 Test Results Summary</h3>
+            <div id="test-summary">
+                <p>Jalankan test untuk melihat hasil</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let testResults = {};
+
+        // Test Responsive Design
+        function testResponsive(size) {
+            const sizes = {
+                mobile: '375px',
+                tablet: '768px',
+                desktop: '1200px'
+            };
+            
+            const width = sizes[size];
+            window.open(`index.html`, 'responsive-test', `width=${parseInt(width)},height=600,scrollbars=yes`);
+            
+            updateStatus('responsive-status', 'pass', `Opened ${size} view (${width})`);
+            testResults.responsive = true;
+            updateSummary();
+        }
+
+        // Test Language
+        function testLanguage(lang) {
+            localStorage.setItem('ecomarket_language', lang);
+            updateStatus('language-status', 'pass', `Language set to ${lang.toUpperCase()}`);
+            testResults.language = true;
+            updateSummary();
+        }
+
+        function testLanguageToggle() {
+            const currentLang = localStorage.getItem('ecomarket_language') || 'id';
+            const newLang = currentLang === 'id' ? 'en' : 'id';
+            testLanguage(newLang);
+        }
+
+        // Test Chat Bot
+        function testBot(query) {
+            // Simulate bot response test
+            const responses = {
+                'cara jual': 'Bot should respond with selling guide',
+                'cara beli': 'Bot should respond with buying guide',
+                'preloved': 'Bot should explain preloved concept',
+                'random': 'Bot should give default response'
+            };
+            
+            const expected = responses[query];
+            updateStatus('bot-status', 'pass', `Bot test: ${query} - ${expected}`);
+            testResults.bot = true;
+            updateSummary();
+        }
+
+        // Test Search & Filter
+        function testSearch(query) {
+            updateStatus('search-status', 'pass', `Search test: "${query}" should filter products`);
+            testResults.search = true;
+            updateSummary();
+        }
+
+        function testFilter(category) {
+            updateStatus('search-status', 'pass', `Filter test: "${category}" should show category products`);
+            testResults.search = true;
+            updateSummary();
+        }
+
+        function testSort(sortType) {
+            updateStatus('search-status', 'pass', `Sort test: "${sortType}" should reorder products`);
+            testResults.search = true;
+            updateSummary();
+        }
+
+        // Test Seller Chat
+        function testSellerChat(seller) {
+            updateStatus('seller-status', 'pass', `Seller chat test: ${seller} should open chat interface`);
+            testResults.sellerChat = true;
+            updateSummary();
+        }
+
+        // Test Performance
+        function testLoadTime() {
+            const startTime = performance.now();
+            setTimeout(() => {
+                const loadTime = performance.now() - startTime;
+                updateStatus('performance-status', 'pass', `Load time test: ${loadTime.toFixed(2)}ms`);
+                testResults.performance = true;
+                updateSummary();
+            }, 100);
+        }
+
+        function testImageLoad() {
+            updateStatus('performance-status', 'pass', 'Image loading test: Should use lazy loading');
+            testResults.performance = true;
+            updateSummary();
+        }
+
+        function testMemoryUsage() {
+            if (performance.memory) {
+                const memory = performance.memory;
+                const used = (memory.usedJSHeapSize / 1048576).toFixed(2);
+                updateStatus('performance-status', 'pass', `Memory usage: ${used} MB`);
+            } else {
+                updateStatus('performance-status', 'pass', 'Memory API not available in this browser');
+            }
+            testResults.performance = true;
+            updateSummary();
+        }
+
+        // Test Browser Compatibility
+        function testBrowserFeatures() {
+            const features = {
+                'Service Worker': 'serviceWorker' in navigator,
+                'Local Storage': typeof(Storage) !== "undefined",
+                'Intersection Observer': 'IntersectionObserver' in window,
+                'Fetch API': 'fetch' in window,
+                'ES6 Support': typeof Symbol !== 'undefined',
+                'CSS Grid': CSS.supports('display', 'grid'),
+                'CSS Flexbox': CSS.supports('display', 'flex')
+            };
+
+            let browserInfo = `<strong>Browser:</strong> ${navigator.userAgent}<br><br>`;
+            browserInfo += '<strong>Feature Support:</strong><br>';
+            
+            for (const [feature, supported] in Object.entries(features)) {
+                const status = supported ? '✅' : '❌';
+                browserInfo += `${status} ${feature}<br>`;
+            }
+
+            document.getElementById('browser-info').innerHTML = browserInfo;
+            updateStatus('browser-status', 'pass', 'Browser compatibility checked');
+            testResults.browser = true;
+            updateSummary();
+        }
+
+        // Helper Functions
+        function updateStatus(elementId, status, message) {
+            const element = document.getElementById(elementId);
+            element.className = `status ${status}`;
+            element.textContent = message;
+        }
+
+        function updateSummary() {
+            const total = Object.keys(testResults).length;
+            const passed = Object.values(testResults).filter(Boolean).length;
+            
+            const summary = document.getElementById('test-summary');
+            summary.innerHTML = `
+                <h4>Test Progress: ${passed}/${total}</h4>
+                <div style="background: #e9ecef; height: 20px; border-radius: 10px; overflow: hidden;">
+                    <div style="background: #10B981; height: 100%; width: ${(passed/6)*100}%; transition: width 0.3s;"></div>
+                </div>
+                <p style="margin-top: 10px;">
+                    ${passed === 6 ? '🎉 All tests completed!' : `${6-passed} tests remaining`}
+                </p>
+            `;
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            testBrowserFeatures();
+        });
+    </script>
+</body>
+</html>

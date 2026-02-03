@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Penjual - EcoPreloved</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="components.css">
+    <link rel="stylesheet" href="seller-dashboard.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <span class="logo-text">Eco<span class="logo-accent">Preloved</span></span>
+                </div>
+
+                <nav class="nav desktop-nav">
+                    <a href="#dashboard" class="nav-link active"><i class="fas fa-chart-line"></i> Dashboard</a>
+                    <a href="#messages" class="nav-link"><i class="fas fa-envelope"></i> Pesan</a>
+                    <a href="#products" class="nav-link"><i class="fas fa-box"></i> Produk</a>
+                </nav>
+
+                <div class="header-actions">
+                    <button class="btn btn-ghost" onclick="window.location.href='index.html'">
+                        <i class="fas fa-sign-out-alt"></i> Keluar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="seller-main">
+        <div class="container">
+            <!-- Dashboard Overview -->
+            <section id="dashboard" class="dashboard-section active">
+                <div class="section-header">
+                    <h1><i class="fas fa-chart-line"></i> Dashboard Penjual</h1>
+                    <p class="section-subtitle">Kelola produk dan pesan Anda dengan mudah</p>
+                </div>
+
+                <!-- Stats Cards -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: rgba(34, 197, 94, 0.1); color: var(--primary);">
+                            <i class="fas fa-box"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-value" id="totalProducts">0</div>
+                            <div class="stat-label">Total Produk</div>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: rgba(59, 130, 246, 0.1); color: #3b82f6;">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-value" id="soldProducts">0</div>
+                            <div class="stat-label">Produk Terjual</div>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: rgba(245, 158, 11, 0.1); color: #f59e0b;">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-value" id="totalMessages">0</div>
+                            <div class="stat-label">Pesan Masuk</div>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: rgba(168, 85, 247, 0.1); color: #a855f7;">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-value" id="sellerRating">4.9</div>
+                            <div class="stat-label">Rating Penjual</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Actions -->
+                <div class="quick-actions">
+                    <h2><i class="fas fa-bolt"></i> Aksi Cepat</h2>
+                    <div class="action-buttons">
+                        <button class="action-btn" onclick="showAddProductModal()">
+                            <i class="fas fa-plus-circle"></i>
+                            <span>Tambah Produk</span>
+                        </button>
+                        <button class="action-btn" onclick="navigateToSection('messages')">
+                            <i class="fas fa-envelope-open"></i>
+                            <span>Lihat Pesan</span>
+                        </button>
+                        <button class="action-btn" onclick="navigateToSection('products')">
+                            <i class="fas fa-box-open"></i>
+                            <span>Kelola Produk</span>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Messages Section -->
+            <section id="messages" class="dashboard-section">
+                <div class="section-header">
+                    <h1><i class="fas fa-envelope"></i> Kotak Masuk</h1>
+                    <p class="section-subtitle">Kelola percakapan dengan pembeli</p>
+                </div>
+
+                <div class="messages-container">
+                    <div class="messages-sidebar">
+                        <div class="messages-search">
+                            <i class="fas fa-search"></i>
+                            <input type="text" id="messageSearch" placeholder="Cari percakapan...">
+                        </div>
+                        <div class="conversations-list" id="conversationsList">
+                            <!-- Conversations will be populated by JavaScript -->
+                        </div>
+                    </div>
+
+                    <div class="messages-content">
+                        <div class="empty-message-state" id="emptyMessageState">
+                            <div class="empty-icon">
+                                <i class="fas fa-comments"></i>
+                            </div>
+                            <h3>Pilih percakapan</h3>
+                            <p>Pilih percakapan dari daftar untuk melihat pesan</p>
+                        </div>
+
+                        <div class="chat-container" id="chatContainer" style="display: none;">
+                            <div class="chat-header">
+                                <div class="chat-user-info">
+                                    <img src="" alt="User" class="chat-avatar" id="chatAvatar">
+                                    <div>
+                                        <h4 id="chatUserName">Nama User</h4>
+                                        <span class="chat-status">Online</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="chat-messages" id="chatMessages">
+                                <!-- Messages will be populated here -->
+                            </div>
+                            <div class="chat-input-container">
+                                <input type="text" id="chatInput" placeholder="Ketik pesan...">
+                                <button onclick="sendMessage()">
+                                    <i class="fas fa-paper-plane"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Products Section -->
+            <section id="products" class="dashboard-section">
+                <div class="section-header">
+                    <div>
+                        <h1><i class="fas fa-box"></i> Produk Saya</h1>
+                        <p class="section-subtitle">Kelola semua produk preloved Anda</p>
+                    </div>
+                    <button class="btn btn-primary" onclick="showAddProductModal()">
+                        <i class="fas fa-plus"></i> Tambah Produk
+                    </button>
+                </div>
+
+                <!-- Product Filters -->
+                <div class="product-filters">
+                    <div class="filter-group">
+                        <select id="productStatusFilter" class="filter-select">
+                            <option value="all">Semua Status</option>
+                            <option value="available">Tersedia</option>
+                            <option value="sold">Terjual</option>
+                            <option value="reserved">Direservasi</option>
+                        </select>
+                        <select id="productCategoryFilter" class="filter-select">
+                            <option value="all">Semua Kategori</option>
+                            <option value="fashion">Fashion</option>
+                            <option value="books">Buku</option>
+                            <option value="electronics">Elektronik</option>
+                            <option value="hobby">Hobi & Koleksi</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Products Grid -->
+                <div class="seller-products-grid" id="sellerProductsGrid">
+                    <!-- Products will be populated by JavaScript -->
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Add/Edit Product Modal -->
+    <div class="modal" id="productModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="productModalTitle">Tambah Produk Baru</h3>
+                <button class="modal-close" onclick="closeProductModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="productForm">
+                    <div class="form-group">
+                        <label for="productName">Nama Produk</label>
+                        <input type="text" id="productName" required placeholder="Contoh: Sepatu Nike Air Max">
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="productCategory">Kategori</label>
+                            <select id="productCategory" required>
+                                <option value="">Pilih Kategori</option>
+                                <option value="fashion">Fashion</option>
+                                <option value="books">Buku</option>
+                                <option value="electronics">Elektronik</option>
+                                <option value="hobby">Hobi & Koleksi</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="productPrice">Harga (Rp)</label>
+                            <input type="number" id="productPrice" required placeholder="50000">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="productDescription">Deskripsi</label>
+                        <textarea id="productDescription" rows="3" required
+                            placeholder="Jelaskan kondisi barang, detail, dll..."></textarea>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="productReason">Alasan Dijual</label>
+                            <input type="text" id="productReason" placeholder="Contoh: Sudah tidak muat">
+                        </div>
+                        <div class="form-group">
+                            <label for="productUsage">Lama Pemakaian</label>
+                            <input type="text" id="productUsage" placeholder="Contoh: 1 tahun">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="productImage">URL Gambar</label>
+                        <input type="text" id="productImage" placeholder="https://example.com/image.jpg">
+                        <small>Masukkan URL gambar produk atau gunakan placeholder</small>
+                    </div>
+
+                    <input type="hidden" id="productId">
+
+                    <button type="submit" class="btn btn-primary btn-full">
+                        <i class="fas fa-save"></i> Simpan Produk
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Overlay -->
+    <div class="overlay" id="overlay"></div>
+
+    <!-- Scripts -->
+    <script src="data.js"></script>
+    <script src="seller-dashboard.js"></script>
+</body>
+
+</html>
